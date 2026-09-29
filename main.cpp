@@ -14,7 +14,7 @@ int main(void){
     BIOS bios;
     bios.PowerOnSelfTest();
     bios.end();
-    system("pause");
+    cin.get();
     return 0;
 }
 

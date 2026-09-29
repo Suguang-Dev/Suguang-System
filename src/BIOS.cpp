@@ -67,7 +67,7 @@ void BIOS::ClearScreen(DWORD DelayMs){
 void BIOS::Ring(DWORD freq, DWORD duration) {
     std::thread([freq, duration]() {
         Beep(freq, duration);
-    }).detach();
+    }).join();
 }
 void BIOS::end(){
     for(char c:"You can power off the system now.") write(c,StdColors::Warning);
@@ -92,8 +92,12 @@ void BIOS::PowerOnSelfTest(){
     ClearScreen(100);
 }
 string BIOS::GetCPUInfo() {
-    char brand[49] = {0};
+    char brand[1024] = {0};
     unsigned int regs[4];
+    __cpuid(0x80000000, regs[0], regs[1], regs[2], regs[3]);
+    if(regs[0] < 0x80000004){
+        return "Unknown CPU";
+    }
     for (unsigned int i = 0; i < 3; i++) {
         __cpuid(0x80000002 + i, regs[0], regs[1], regs[2], regs[3]);
         memcpy(brand + i * 16, regs, 16);
