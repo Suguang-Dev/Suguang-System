@@ -18,3 +18,11 @@
 
 // ===== C语言标准库 =====
 #include <cpuid.h>
+
+using namespace std;
+
+namespace ErrorCodes{                                                                                                   //错误代码
+    constexpr const char* success    =   "DONE";
+    constexpr const char* fail       =   "FAIL";
+    constexpr const char* unknown    =   "UKOW";
+};
