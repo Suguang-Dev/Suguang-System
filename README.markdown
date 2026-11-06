@@ -4,8 +4,10 @@
 本项目目前仅支持中文文档。
 
 **Suguang System开发团队名单**：
+
 主开发者:
 - [Suguang-Dev](https://github.com/Suguang-Dev)
+
 Issues 回复:
 - [Suguang-QA-Bot](https://github.com/Suguang-QA-Bot)
 

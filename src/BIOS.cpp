@@ -1,4 +1,11 @@
 #include "BIOS.hpp"
+
+using std::cout;
+using std::cin;
+using std::getline;
+using std::to_string;
+using std::thread;
+
 BIOS::BIOS() = default;
 BIOS::BIOS(string usrName){
     UserName = usrName;
@@ -7,7 +14,7 @@ string BIOS::ver(){
     return LatestUpdate + " " + Version + " " + Maker + "\n";
 }
 void BIOS::write(char c){
-    cout << c;
+    putchar(c);
 }
 void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
     cout << (s.FontFontBoldAdjustment ?      "\033[1m"  : "")
@@ -25,23 +32,25 @@ void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
         << c << "\033[0m";
 }
 void BIOS::write(char c, int r, int g, int b) {
-    write(c,
+    write(
+        c,
         StyleSystem::ColorStyle(r,g,b)
     );
 }
 void BIOS::write(char c, const RGB& rgb) {
-    write(c,
+    write(
+        c,
         StyleSystem::ColorStyle
         (
-        rgb.GetColor(RGB::Get::_Red_),
-        rgb.GetColor(RGB::Get::_Green_),
-        rgb.GetColor(RGB::Get::_Blue_)
+            rgb.GetColor(RGB::Get::_Red_),
+            rgb.GetColor(RGB::Get::_Green_),
+            rgb.GetColor(RGB::Get::_Blue_)
         )
     );
 }
 void BIOS::input(string& str){
-            getline(cin,str);
-        }
+    getline(cin,str);
+}
 void BIOS::backspace(const StyleSystem::ColorStyle& s){
     write('\b',s);
     write(' ', s);

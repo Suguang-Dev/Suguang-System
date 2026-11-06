@@ -1,18 +1,19 @@
 #ifdef _WIN64
 
 #include "stdafx.hpp"
-#include "RGB.hpp"
-#include "BIOS.hpp"
+#include "sysstd.hpp"
 
+// version: 0.1.{20260929.215244} -ttt
 
-void StringWrite(const string& str){   //Issue by @Suguang-Dev, Created & Published. SYSTEM-App do not use this.
-    BIOS b;
+void StringWrite(const string& str, BIOS& b){   
+    //Issue by @Suguang-Dev, Created & Published. 
+    //SYSTEM-App do not use this.
     for(char c:str) b.write(c);
 }
 
 
 void MainFunction(BIOS& bios){
-
+    for(char c:bios.ver()) bios.write(c);
 }
 
 
@@ -20,6 +21,7 @@ int main(void){
     BIOS bios;
     bios.PowerOnSelfTest();
     MainFunction(bios);
+    bios.ClearScreen();
     bios.end();
     cin.get();
     return 0;

@@ -2,6 +2,10 @@
 #include "RGB.hpp"
 #include "stdafx.hpp"
 #include "StyleSystem.hpp"
+#include <cstring>
+
+using std::string;
+
 class BIOS{                                                                                                            //标准输入输出系统
     public:
         enum Authority{ Guest , NormalUser , HighUser , SuperUser , SYSTEM , TrustedInstaller , SystemMakerTeam };

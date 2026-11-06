@@ -1,5 +1,13 @@
 #include "RGB.hpp"
 
+using std::cerr;
+using std::string;
+using std::exception;
+using std::stoi;
+using std::tolower;
+using std::isxdigit;
+using std::substr;
+
 uint8_t RGB::HexToInt(const string& Hex){
     try{
         return static_cast<uint8_t>(stoi(Hex, nullptr, 16));
@@ -12,13 +20,13 @@ uint8_t RGB::HexToInt(const string& Hex){
     }
 }
 RGB::RGB(const string& InputRGBString){      // 只给一个字符串就……转成RGB颜色然后颜色化
-    string RedGreenBlueString               =       InputRGBString;                                  // 拷贝一份，不会改变原值
+    string RedGreenBlueString               =       InputRGBString;                                 // 拷贝一份，不会改变原值
 
     for(char &c : RedGreenBlueString)  c    =       static_cast<char>(std::tolower(static_cast<unsigned char>(c))); 
-                                                                                                            // 强迫症犯了必须小写
+                                                                                                    // 强迫症犯了必须小写
     if(RedGreenBlueString.empty() == false                                                          // 不是空的才给过不要等下炸了.
     and RedGreenBlueString.at(0) == '#' )           RedGreenBlueString.erase(RedGreenBlueString.begin());
-                                                                                                            // 删掉一些开头"#"
+                                                                                                    // 删掉一些开头"#"
     if(RedGreenBlueString.size() == 3){                                                             // 短写的RGB代号，没事转一下
         string OldRedGreenBlueString        =       RedGreenBlueString;                             // 临时变量因为需要重新赋值
         RedGreenBlueString                  =       EMPTY_STRING;                                   // 其实没啥用就是清空字符串
