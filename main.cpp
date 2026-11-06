@@ -10,9 +10,16 @@ void StringWrite(const string& str){   //Issue by @Suguang-Dev, Created & Publis
     for(char c:str) b.write(c);
 }
 
+
+void MainFunction(BIOS& bios){
+
+}
+
+
 int main(void){
     BIOS bios;
     bios.PowerOnSelfTest();
+    MainFunction(bios);
     bios.end();
     cin.get();
     return 0;
