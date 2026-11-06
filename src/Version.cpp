@@ -1,8 +1,8 @@
 #include "Version.hpp"
 namespace {
-    constexpr char MainVer  = '0';
-    constexpr char ForkVer  = '1';
-    constexpr char Point    = '000';
-    constexpr char Created  = __DATE__;
-    constexpr char Tips[3]  = "ttt";
+    constexpr const char* MainVer  = "0";
+    constexpr const char* ForkVer  = "1";
+    constexpr const char* Point    = "000";
+    constexpr const char* Created  = __DATE__;
+    constexpr const char* Tips     = "ttt";
 }
