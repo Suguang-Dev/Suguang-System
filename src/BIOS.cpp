@@ -3,7 +3,9 @@
 using std::cout;
 using std::cin;
 using std::getline;
+using std::string;
 using std::to_string;
+using std::c_str;
 using std::thread;
 
 BIOS::BIOS() = default;
@@ -16,20 +18,26 @@ string BIOS::ver(){
 void BIOS::write(char c){
     putchar(c);
 }
+void BIOS::write(const char* c){
+    for(char t:c) write(c);
+}
 void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
-    cout << (s.FontFontBoldAdjustment ?      "\033[1m"  : "")
-         << (s.FontFontItalicAdjustment ?    "\033[3m"  : "")
-         << (s.FontFontUnderlineAdjustment ? "\033[4m"  : "");
+    string AnsiString="\0";
+    AnsiString += (s.FontFontBoldAdjustment ?      "\033[1m"  : "")
+               +  (s.FontFontItalicAdjustment ?    "\033[3m"  : "")
+               +  (s.FontFontUnderlineAdjustment ? "\033[4m"  : "");
     if(s.ShowBackgroundAdjustment)
-    cout << "\033[48;2;"
-        << (int)s.BackgroundColorRedChannel     << ";"
-        << (int)s.BackgroundColorGreenChannel   << ";"
-        << (int)s.BackgroundColorBlueChannel    << "m";
-    cout << "\033[38;2;" 
-        << (int)s.FontColorRedChannel     << ";" 
-        << (int)s.FontColorGreenChannel   << ";" 
-        << (int)s.FontColorBlueChannel    << "m"
-        << c << "\033[0m";
+    AnsiString += "\033[48;2;"
+               +  (int)s.BackgroundColorRedChannel     << ";"
+               +  (int)s.BackgroundColorGreenChannel   << ";"
+               +  (int)s.BackgroundColorBlueChannel    << "m";
+    AnsiString += "\033[38;2;" 
+               +  (int)s.FontColorRedChannel     << ";" 
+               +  (int)s.FontColorGreenChannel   << ";" 
+               +  (int)s.FontColorBlueChannel    << "m"
+               +  c 
+               +  "\033[0m";
+    write(AnsiString.c_str());
 }
 void BIOS::write(char c, int r, int g, int b) {
     write(
