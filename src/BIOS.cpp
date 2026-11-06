@@ -19,7 +19,7 @@ void BIOS::write(char c){
     putchar(c);
 }
 void BIOS::write(const char* c){
-    for(char t:c) write(c);
+    for(char t:c) write(t);
 }
 void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
     string AnsiString="\0";
