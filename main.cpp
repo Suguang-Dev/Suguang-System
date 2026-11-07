@@ -15,6 +15,8 @@ void StringWrite(const string& str, BIOS& b){
 
 void MainFunction(BIOS& bios){
     for(char c:bios.ver()) bios.write(c);
+    bios.write('\n');
+    for(char c:Version::GetVersion()) bios.write(c);
 }
 
 

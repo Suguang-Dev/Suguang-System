@@ -3,3 +3,4 @@
 #include "RGB.hpp"
 #include "StyleSystem.hpp"
 #include "Version.hpp"
+#include "Shell.hpp"
