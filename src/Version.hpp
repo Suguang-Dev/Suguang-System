@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace Version{/*
+namespace Version{
     std::string GetVersion();
-    bool Verify();*/
+    bool Verify();
 }
