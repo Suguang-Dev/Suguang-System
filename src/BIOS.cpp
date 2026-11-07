@@ -11,10 +11,10 @@ void BIOS::write(char c){
     putchar(c);
 }
 void BIOS::write(const char* c){
-    while(*(++c)!='\0') write(c);
+    while(*c) write(*(c++));
 }
 void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
-    std::string AnsiString = ""; // 不要用 "\0"
+    std::string AnsiString = "";
     if (s.FontFontBoldAdjustment)      AnsiString += "\033[1m";
     if (s.FontFontItalicAdjustment)    AnsiString += "\033[3m";
     if (s.FontFontUnderlineAdjustment) AnsiString += "\033[4m";
