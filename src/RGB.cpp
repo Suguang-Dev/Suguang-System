@@ -1,12 +1,5 @@
 #include "RGB.hpp"
-
-using std::cerr;
-using std::string;
-using std::exception;
-using std::stoi;
-using std::tolower;
-using std::isxdigit;
-using std::substr;
+#include <string>
 
 uint8_t RGB::HexToInt(const string& Hex){
     try{

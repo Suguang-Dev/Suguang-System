@@ -4,6 +4,12 @@
 #include "StyleSystem.hpp"
 #include <cstring>
 
+using std::cout;
+using std::cin;
+using std::getline;
+using std::string;
+using std::to_string;
+using std::thread;
 using std::string;
 
 class BIOS{                                                                                                            //标准输入输出系统
@@ -23,6 +29,7 @@ class BIOS{                                                                     
         BIOS(string);
         string ver();
         void write(char);
+        void write(const char* c);
         void write(char,const StyleSystem::ColorStyle&) ;
         void write(char,int,int,int) ;
         void write(char,const RGB&) ;

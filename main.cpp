@@ -2,6 +2,7 @@
 
 #include "stdafx.hpp"
 #include "sysstd.hpp"
+using namespace std;
 
 // version: 0.1.{20260929.215244} -ttt
 

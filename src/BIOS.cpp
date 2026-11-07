@@ -1,13 +1,5 @@
 #include "BIOS.hpp"
 
-using std::cout;
-using std::cin;
-using std::getline;
-using std::string;
-using std::to_string;
-using std::c_str;
-using std::thread;
-
 BIOS::BIOS() = default;
 BIOS::BIOS(string usrName){
     UserName = usrName;
@@ -19,24 +11,25 @@ void BIOS::write(char c){
     putchar(c);
 }
 void BIOS::write(const char* c){
-    for(char t:c) write(t);
+    while(*(++c)!='\0') write(c);
 }
 void BIOS::write(char c, const StyleSystem::ColorStyle& s) {
-    string AnsiString="\0";
-    AnsiString += (s.FontFontBoldAdjustment ?      "\033[1m"  : "")
-               +  (s.FontFontItalicAdjustment ?    "\033[3m"  : "")
-               +  (s.FontFontUnderlineAdjustment ? "\033[4m"  : "");
-    if(s.ShowBackgroundAdjustment)
-    AnsiString += "\033[48;2;"
-               +  (int)s.BackgroundColorRedChannel     << ";"
-               +  (int)s.BackgroundColorGreenChannel   << ";"
-               +  (int)s.BackgroundColorBlueChannel    << "m";
-    AnsiString += "\033[38;2;" 
-               +  (int)s.FontColorRedChannel     << ";" 
-               +  (int)s.FontColorGreenChannel   << ";" 
-               +  (int)s.FontColorBlueChannel    << "m"
-               +  c 
-               +  "\033[0m";
+    std::string AnsiString = ""; // 不要用 "\0"
+    if (s.FontFontBoldAdjustment)      AnsiString += "\033[1m";
+    if (s.FontFontItalicAdjustment)    AnsiString += "\033[3m";
+    if (s.FontFontUnderlineAdjustment) AnsiString += "\033[4m";
+    if (s.ShowBackgroundAdjustment) 
+        AnsiString += "\033[48;2;" + 
+                      std::to_string((int)s.BackgroundColorRedChannel) + ";" +
+                      std::to_string((int)s.BackgroundColorGreenChannel) + ";" +
+                      std::to_string((int)s.BackgroundColorBlueChannel) + "m";
+    AnsiString += "\033[38;2;" + 
+                  std::to_string((int)s.FontColorRedChannel) + ";" +
+                  std::to_string((int)s.FontColorGreenChannel) + ";" +
+                  std::to_string((int)s.FontColorBlueChannel) + "m";
+                  
+    AnsiString += c;
+    AnsiString += "\033[0m";
     write(AnsiString.c_str());
 }
 void BIOS::write(char c, int r, int g, int b) {

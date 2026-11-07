@@ -1,6 +1,13 @@
 #pragma once
 #include "stdafx.hpp"
 
+using std::cerr;
+using std::string;
+using std::exception;
+using std::stoi;
+using std::tolower;
+using std::isxdigit;
+
 constexpr const char* EMPTY_STRING = "";
 
 //      ====================================
